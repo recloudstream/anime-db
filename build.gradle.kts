@@ -1,46 +1,24 @@
-plugins {
-    kotlin("jvm") version "2.2.21"
-    id("maven-publish")
-    id("java-library")
-}
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-group = "com.lagradost"
-version = "1.0.1"
-
-publishing {
+buildscript {
     repositories {
-        mavenLocal()
+        mavenCentral()
+        google()
     }
-    publications {
-        create<MavenPublication>("jitpack") {
-            groupId = "com.github.recloudstream"
-            artifactId = "animedb"
-            version = "1.0.1"
-            from(components["java"])
-        }
-        create<MavenPublication>("maven") {
-            groupId = "com.lagradost"
-            artifactId = "animedb"
-            version = "1.0.1"
-            from(components["java"])
-        }
+    dependencies {
+        classpath("com.android.tools.build:gradle:9.1.1")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.21")
     }
 }
 
+allprojects {
+    repositories {
+        mavenCentral()
+        google()
+    }
 
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testImplementation(kotlin("test"))
-}
-
-kotlin {
-    jvmToolchain(21)
-}
-
-tasks.test {
-    useJUnitPlatform()
+    // https://docs.gradle.org/current/userguide/upgrading_major_version_9.html#test_task_fails_when_no_tests_are_discovered
+    tasks.withType<AbstractTestTask>().configureEach {
+        failOnNoDiscoveredTests = false
+    }
 }
