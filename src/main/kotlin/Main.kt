@@ -1,4 +1,4 @@
-package com.largradost
+package com.lagradost
 
 import java.io.InputStream
 

@@ -4,8 +4,8 @@ plugins {
     id("java-library")
 }
 
-group = "com.largradost"
-version = "1.0.0"
+group = "com.lagradost"
+version = "1.0.1"
 
 publishing {
     repositories {
@@ -15,13 +15,13 @@ publishing {
         create<MavenPublication>("jitpack") {
             groupId = "com.github.recloudstream"
             artifactId = "animedb"
-            version = "1.0.0"
+            version = "1.0.1"
             from(components["java"])
         }
         create<MavenPublication>("maven") {
             groupId = "com.lagradost"
             artifactId = "animedb"
-            version = "1.0.0"
+            version = "1.0.1"
             from(components["java"])
         }
     }
